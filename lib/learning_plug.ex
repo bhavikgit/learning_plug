@@ -6,7 +6,7 @@ defmodule LearningPlug do
 		Map.put(opts,:my_options,"Hello")
 	end
 
-	def call(conn,opts) do
-		send_resp(conn,200,"#{opts[:my_options]} World ")
+	def call(%Plug.Conn{request_path: "/" <> name} = conn,opts) do
+		send_resp(conn,200,"Hello, #{name} ")
 	end
 end
